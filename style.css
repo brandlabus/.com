@@ -3,6 +3,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap");
 
+/* --- New Keyframes for Section Entrance --- */
+@keyframes sectionFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.our-services-section,
+.about-us-section,
+.call-to-action-section,
+.clients-section,
+.final-cta-section,
+.footer-section {
+  opacity: 0;
+  transition: opacity 0s, transform 0s;
+}
+
+.js-animate-in {
+  animation-name: sectionFadeInUp !important;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  opacity: 1;
+}
+
 * {
   box-sizing: border-box;
   border-radius: 0.75rem;
@@ -727,9 +757,9 @@ html {
     display: none;
   }
 
-  /* .nav-three {
+  .nav-three {
     display: none;
-  } */
+  }
 
   .navigation.active {
     display: flex;

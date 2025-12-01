@@ -99,4 +99,35 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeof lucide !== "undefined" && lucide.createIcons) {
     lucide.createIcons();
   }
+
+  const sectionsToAnimate = document.querySelectorAll(
+    ".our-services-section, .about-us-section, .call-to-action-section, .clients-section, .final-cta-section, .footer-section"
+  );
+
+  const sectionObserverOptions = {
+    root: null,
+    threshold: 0.15, // Trigger when 15% of the section is visible
+  };
+
+  const sectionObserverCallback = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Add the class to start the CSS animation
+        entry.target.classList.add("js-animate-in");
+
+        // Stop observing this element once it has been animated
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+
+  const sectionObserver = new IntersectionObserver(
+    sectionObserverCallback,
+    sectionObserverOptions
+  );
+
+  // Start observing all targeted sections
+  sectionsToAnimate.forEach((section) => {
+    sectionObserver.observe(section);
+  });
 });
